@@ -26,5 +26,5 @@ class BlogPostsListUseCase
     posts_fetched_callbacks.each { |callback| callback.call(blog_posts) }
   end
 
-  attr_reader :posts_fetched_callbacks, :post_repository
+  attr_reader :posts_fetched_callbacks, :post_request_callbacks, :post_repository
 end

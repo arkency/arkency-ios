@@ -12,7 +12,7 @@ class BlogPostsListViewController < UIViewController
 
     @use_case.on_post_request do |blog_post|
       reading_view_controller = BlogPostReadingViewController.new
-      reading_view_controller.provide_blog_post(blog_posts[indexPath.row])
+      reading_view_controller.provide_blog_post(blog_post)
 
       self.presentViewController(reading_view_controller, animated: true, completion: nil)
     end
