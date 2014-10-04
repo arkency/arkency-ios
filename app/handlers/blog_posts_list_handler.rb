@@ -16,10 +16,7 @@ class BlogPostsListHandler
   def tableView(tableView, didSelectRowAtIndexPath: indexPath)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-    reading_view_controller = BlogPostReadingViewController.new
-    reading_view_controller.provide_blog_post(blog_posts[indexPath.row])
-
-    view_controller.presentViewController(reading_view_controller, animated: true, completion: nil)
+    use_case.user_requested_post(blog_posts[indexPath.row])
   end
 
   def provide_blog_posts(blog_posts)

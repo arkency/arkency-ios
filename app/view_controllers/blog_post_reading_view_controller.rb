@@ -13,15 +13,22 @@ class BlogPostReadingViewController < UIViewController
   def viewDidLoad
     super
 
-    navigationBarView.topItem.title = blog_post.title
+    set_screen_title_to(blog_post.title)
+    load_blog_post(blog_post)
+  end
 
+  private
+  attr_reader :blog_post
+
+  def load_blog_post(blog_post)
     url = NSURL.URLWithString(blog_post.url)
     request = NSURLRequest.requestWithURL(url)
     webView.loadRequest(request)
   end
 
-  private
-  attr_reader :blog_post
+  def set_screen_title_to(title)
+    navigationBarView.topItem.title = blog_post.title
+  end
 
   def navigationBarView
     view.subviews.find { |subview| subview.tag == NAVIGATION_BAR_TAG }

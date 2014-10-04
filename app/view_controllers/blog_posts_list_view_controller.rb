@@ -9,6 +9,13 @@ class BlogPostsListViewController < UIViewController
       handler.provide_blog_posts(blog_posts)
       blog_posts_table_view.reloadData
     end
+
+    @use_case.on_post_request do |blog_post|
+      reading_view_controller = BlogPostReadingViewController.new
+      reading_view_controller.provide_blog_post(blog_posts[indexPath.row])
+
+      self.presentViewController(reading_view_controller, animated: true, completion: nil)
+    end
   end
 
   def loadView
