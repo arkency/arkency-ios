@@ -1,7 +1,8 @@
 class BlogPostsListHandler
-  def initialize(use_case, blog_posts = [])
-    @blog_posts = blog_posts
-    @use_case   = use_case
+  def initialize(view_controller, use_case, blog_posts = [])
+    @view_controller = view_controller
+    @blog_posts      = blog_posts
+    @use_case        = use_case
   end
 
   def tableView(tableView, cellForRowAtIndexPath: indexPath)
@@ -10,6 +11,15 @@ class BlogPostsListHandler
 
   def tableView(tableView, numberOfRowsInSection: section)
     blog_posts.count
+  end
+
+  def tableView(tableView, didSelectRowAtIndexPath: indexPath)
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+    reading_view_controller = BlogPostReadingViewController.new
+    reading_view_controller.provide_blog_post(blog_posts[indexPath.row])
+
+    view_controller.presentViewController(reading_view_controller, animated: true, completion: nil)
   end
 
   def provide_blog_posts(blog_posts)
@@ -24,5 +34,5 @@ class BlogPostsListHandler
   end
 
   private
-  attr_reader :blog_posts, :use_case
+  attr_reader :blog_posts, :use_case, :view_controller
 end
