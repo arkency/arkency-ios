@@ -11,4 +11,5 @@ end
 
 Motion::Project::App.setup do |app|
   app.name = 'Arkency'
+  app.deployment_target = '7.0'
 end

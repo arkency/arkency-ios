@@ -14,7 +14,7 @@ class BlogPostsListViewController < UIViewController
       reading_view_controller = BlogPostReadingViewController.new
       reading_view_controller.provide_blog_post(blog_post)
 
-      self.presentViewController(reading_view_controller, animated: true, completion: nil)
+      self.navigationController.pushViewController(reading_view_controller, animated: true)
     end
   end
 

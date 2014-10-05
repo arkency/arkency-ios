@@ -1,5 +1,4 @@
 class BlogPostReadingViewController < UIViewController
-  NAVIGATION_BAR_TAG = 0
   WEB_VIEW_TAG = 1
 
   def loadView
@@ -27,11 +26,7 @@ class BlogPostReadingViewController < UIViewController
   end
 
   def set_screen_title_to(title)
-    navigationBarView.topItem.title = blog_post.title
-  end
-
-  def navigationBarView
-    view.subviews.find { |subview| subview.tag == NAVIGATION_BAR_TAG }
+    self.title = title
   end
 
   def webView

@@ -10,26 +10,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNN-VB-F0I">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                    <items>
-                        <navigationItem title="Blog Posts List" id="LTR-hs-mJP"/>
-                    </items>
-                </navigationBar>
                 <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nP7-Bg-GS1">
-                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="nP7-Bg-GS1" secondAttribute="trailing" id="4Cb-Pw-oPF"/>
-                <constraint firstAttribute="trailing" secondItem="NNN-VB-F0I" secondAttribute="trailing" id="Jmd-Fv-80E"/>
-                <constraint firstItem="nP7-Bg-GS1" firstAttribute="top" secondItem="NNN-VB-F0I" secondAttribute="bottom" id="UOI-er-Nq5"/>
                 <constraint firstAttribute="bottom" secondItem="nP7-Bg-GS1" secondAttribute="bottom" id="V5l-Cs-ljo"/>
-                <constraint firstItem="NNN-VB-F0I" firstAttribute="top" secondItem="lEV-Tl-dHi" secondAttribute="top" id="czo-Dc-pnP"/>
                 <constraint firstItem="nP7-Bg-GS1" firstAttribute="leading" secondItem="lEV-Tl-dHi" secondAttribute="leading" id="h7v-Wv-dUG"/>
-                <constraint firstItem="NNN-VB-F0I" firstAttribute="leading" secondItem="lEV-Tl-dHi" secondAttribute="leading" id="pBg-if-uT6"/>
+                <constraint firstItem="nP7-Bg-GS1" firstAttribute="top" secondItem="lEV-Tl-dHi" secondAttribute="top" id="o35-Mo-cdS"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="781.5" y="-551.5"/>

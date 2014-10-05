@@ -7,7 +7,7 @@ class AppDelegate
   private
   def loadBlogPostsList
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
-    @window.rootViewController = blog_posts_view_controller
+    @window.rootViewController = UINavigationController.alloc.initWithRootViewController(blog_posts_view_controller)
     @window.makeKeyAndVisible
   end
 
