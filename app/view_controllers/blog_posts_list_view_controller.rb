@@ -1,7 +1,7 @@
 class BlogPostsListViewController < UIViewController
   POSTS_LIST_TAG = 1
 
-  def initialize(use_case)
+  def start(use_case)
     @use_case = use_case
     @handler = BlogPostsListHandler.new(self, use_case)
 

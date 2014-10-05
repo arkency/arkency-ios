@@ -1,6 +1,11 @@
 module Application
   def blog_posts_view_controller
-    @blog_posts_list_view_controller ||= BlogPostsListViewController.new(blog_posts_use_case)
+    if @blog_posts_list_view_controller.nil?
+      @blog_posts_list_view_controller ||= BlogPostsListViewController.new
+      @blog_posts_list_view_controller.start(blog_posts_use_case)
+    end
+
+    @blog_posts_list_view_controller
   end
 
   def blog_posts_use_case
