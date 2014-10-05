@@ -7,22 +7,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="lEV-Tl-dHi">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MQ0-Oz-ezo">
-                    <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nP7-Bg-GS1">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoA-ob-BjH">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNN-VB-F0I">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <items>
-                        <navigationItem title="Blog Posts List" id="SKA-BQ-1se"/>
+                        <navigationItem title="Blog Posts List" id="LTR-hs-mJP"/>
                     </items>
                 </navigationBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="608" y="-599"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="nP7-Bg-GS1" secondAttribute="trailing" id="4Cb-Pw-oPF"/>
+                <constraint firstAttribute="trailing" secondItem="NNN-VB-F0I" secondAttribute="trailing" id="Jmd-Fv-80E"/>
+                <constraint firstItem="nP7-Bg-GS1" firstAttribute="top" secondItem="NNN-VB-F0I" secondAttribute="bottom" id="UOI-er-Nq5"/>
+                <constraint firstAttribute="bottom" secondItem="nP7-Bg-GS1" secondAttribute="bottom" id="V5l-Cs-ljo"/>
+                <constraint firstItem="NNN-VB-F0I" firstAttribute="top" secondItem="lEV-Tl-dHi" secondAttribute="top" id="czo-Dc-pnP"/>
+                <constraint firstItem="nP7-Bg-GS1" firstAttribute="leading" secondItem="lEV-Tl-dHi" secondAttribute="leading" id="h7v-Wv-dUG"/>
+                <constraint firstItem="NNN-VB-F0I" firstAttribute="leading" secondItem="lEV-Tl-dHi" secondAttribute="leading" id="pBg-if-uT6"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="781.5" y="-551.5"/>
         </view>
     </objects>
 </document>

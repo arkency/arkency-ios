@@ -7,22 +7,33 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="jSl-Ud-FjI">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qrx-XB-ZN3">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qrx-XB-ZN3">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <items>
                         <navigationItem id="Hdt-hN-r1C"/>
                     </items>
                 </navigationBar>
-                <webView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zEa-hh-Qme">
-                    <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                <webView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEa-hh-Qme">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </webView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="413" y="336"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Qrx-XB-ZN3" secondAttribute="trailing" id="7B9-K9-qR7"/>
+                <constraint firstItem="zEa-hh-Qme" firstAttribute="leading" secondItem="jSl-Ud-FjI" secondAttribute="leading" id="He2-aq-Tex"/>
+                <constraint firstItem="Qrx-XB-ZN3" firstAttribute="leading" secondItem="jSl-Ud-FjI" secondAttribute="leading" id="IVS-H8-j8f"/>
+                <constraint firstItem="Qrx-XB-ZN3" firstAttribute="top" secondItem="jSl-Ud-FjI" secondAttribute="top" id="Jj4-Id-CMP"/>
+                <constraint firstAttribute="bottom" secondItem="zEa-hh-Qme" secondAttribute="bottom" id="Kse-MN-lYC"/>
+                <constraint firstItem="Qrx-XB-ZN3" firstAttribute="width" secondItem="zEa-hh-Qme" secondAttribute="width" id="UXs-fJ-h6I"/>
+                <constraint firstItem="zEa-hh-Qme" firstAttribute="top" secondItem="Qrx-XB-ZN3" secondAttribute="bottom" id="WGe-CN-NeG"/>
+                <constraint firstAttribute="trailing" secondItem="zEa-hh-Qme" secondAttribute="trailing" id="jmE-Dw-PRM"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="412.5" y="335.5"/>
         </view>
     </objects>
 </document>

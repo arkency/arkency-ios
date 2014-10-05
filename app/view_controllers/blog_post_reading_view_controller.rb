@@ -11,10 +11,10 @@ class BlogPostReadingViewController < UIViewController
   end
 
   def viewDidLoad
-    super
-
     set_screen_title_to(blog_post.title)
     load_blog_post(blog_post)
+
+    super
   end
 
   private

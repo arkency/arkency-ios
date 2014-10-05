@@ -23,12 +23,12 @@ class BlogPostsListViewController < UIViewController
   end
 
   def viewDidLoad
-    super
-
     self.title = 'Blog Posts'
     provide_blog_posts_list_data_source(handler)
     provide_blog_posts_list_delegate(handler)
     use_case.user_entered_screen
+
+    super
   end
 
   private
