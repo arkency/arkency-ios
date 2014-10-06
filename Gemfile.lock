@@ -47,6 +47,7 @@ GEM
     json_pure (1.8.1)
     motion-cocoapods (1.6.0)
       cocoapods (>= 0.34)
+    motion-layout (0.0.2)
     motion-require (0.2.0)
     multi_json (1.10.1)
     nap (0.8.0)
@@ -67,4 +68,5 @@ DEPENDENCIES
   afmotion
   ib
   motion-cocoapods
+  motion-layout
   rake

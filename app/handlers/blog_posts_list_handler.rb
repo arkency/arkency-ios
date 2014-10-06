@@ -25,8 +25,8 @@ class BlogPostsListHandler
 
   private
   def render_blog_post_entry(blog_post)
-    cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier: blog_post.url)
-    cell.textLabel.text = blog_post.title
+    cell = BlogPostCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier: blog_post.url)
+    cell.blog_post = blog_post
     cell
   end
 
