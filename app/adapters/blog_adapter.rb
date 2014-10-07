@@ -19,8 +19,9 @@ class BlogAdapter
   def http_client
     @http_client ||= AFMotion::Client.build(base_url) do
       header "Content-Type", "application/rss+xml"
-
-      response_serializer :xml
+      serializer = AFXMLParserResponseSerializer.new
+      serializer.acceptableContentTypes = NSSet.setWithObjects 'application/atom+xml', 'application/rss+xml', nil
+      response_serializer(serializer)
     end
   end
 end

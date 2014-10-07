@@ -20,7 +20,7 @@ class BlogPostsListViewController < UIViewController
 
   def loadView
     self.view = NSBundle.mainBundle.loadNibNamed('BlogPostsList', owner: self, options: nil).first
-    blog_posts_table_view.rowHeight = 120
+    blog_posts_table_view.rowHeight = 200
   end
 
   def viewDidLoad

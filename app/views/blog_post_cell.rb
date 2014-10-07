@@ -2,37 +2,42 @@ class BlogPostCell < UITableViewCell
   def initWithStyle(style, reuseIdentifier: reuseIdentifier)
     super
 
-    @titleLabel = UILabel.alloc.initWithFrame(CGRectMake(20, 20, 620, 100))
-    @titleLabel.textColor = UIColor.whiteColor
-    @titleLabel.font = UIFont.fontWithName("DamascusBold", size: 18)
-
-    @imageView = UIImageView.new
-    @imageView.url = "http://blog.arkency.com/assets/images/react-keys-getinitial-state/react_children_keys-fit.jpg"
-    @imageView.addSubview(@titleLabel)
-
-    composeCell
+    layout = BlogPostCellLayout.new(root: self).build
+    @image = layout.get(:image)
+    @title = layout.get(:title)
 
     self
   end
 
   def blog_post=(blog_post)
-    @titleLabel.text = blog_post.title
-    @titleLabel.lineBreakMode = UILineBreakModeCharacterWrap
-    @titleLabel.numberOfLines = 0
-
-    size = CGSizeMake(620, 10000)
+    @image.url = 'http://blog.arkency.com/assets/images/react-keys-getinitial-state/react_children_keys-fit.jpg'
+    @title.text = blog_post.title
   end
+end
 
-  private
-  def composeCell
-    Motion::Layout.new do |layout|
-      layout.view self.contentView
-      layout.subviews "imageView" => @imageView
-      layout.vertical "|[imageView]|"
-      layout.horizontal "|[imageView]|"
-      layout.metrics "height" => 120
+class BlogPostCellLayout < MotionKit::Layout
+  def layout
+    add UIImageView, :image do
+      autoresizing_mask :pin_to_top, :flexible_width
+
+      frame [[0, 0], ['100%', 200]]
+
+      add UILabel, :title do
+        autoresizing_mask :pin_to_bottom, :flexible_width
+
+        left 10
+        top 60
+        size ['100% - 10', '100% - 10']
+        number_of_lines 0
+        shadow_color UIColor.blackColor
+        shadow_offset [1.0, 1.0]
+
+        line_break_mode UILineBreakModeWordWrap
+        font UIFont.fontWithName('Futura-Medium', size: 18)
+
+        text_color UIColor.whiteColor
+        text_alignment NSTextAlignmentLeft
+      end
     end
   end
-
-  attr_accessor :imageView
 end
