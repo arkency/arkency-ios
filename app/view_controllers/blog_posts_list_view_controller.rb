@@ -20,7 +20,6 @@ class BlogPostsListViewController < UIViewController
 
   def loadView
     self.view = NSBundle.mainBundle.loadNibNamed('BlogPostsList', owner: self, options: nil).first
-    blog_posts_table_view.rowHeight = 200
   end
 
   def viewDidLoad
@@ -29,12 +28,18 @@ class BlogPostsListViewController < UIViewController
     self.title = 'Blog Posts'
     provide_blog_posts_list_data_source(handler)
     provide_blog_posts_list_delegate(handler)
+    set_blog_posts_list_row_height
     use_case.user_entered_screen
   end
+
 
   private
   def provide_blog_posts_list_data_source(data_source)
     blog_posts_table_view.dataSource = data_source
+  end
+
+  def set_blog_posts_list_row_height
+    blog_posts_table_view.rowHeight = 200
   end
 
   def provide_blog_posts_list_delegate(delegate)
