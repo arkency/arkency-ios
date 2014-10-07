@@ -20,6 +20,7 @@ class PostRepository
       @stack = []
       @title_being_entered = false
       @published_at_being_entered = false
+      @content_being_entered = false
 
       @posts = []
     end
@@ -47,6 +48,10 @@ class PostRepository
         @current_post[:url] = attributes['href']
       end
 
+      if @stack.last == 'entry' && elementName == 'content'
+        @content_being_entered = true
+      end
+
       if elementName == 'entry'
         @current_post = {}
       end
@@ -58,9 +63,13 @@ class PostRepository
       @stack.pop
       @title_being_entered = false
       @published_at_being_entered = false
+      @content_being_entered = false
 
       if elementName == 'entry'
-        @posts << Post.new(@current_post[:url], @current_post[:title], @current_post[:published_at])
+        post = Post.new(@current_post[:url], @current_post[:title], @current_post[:published_at])
+        post.set_found_image(@current_post[:image_url]) unless @current_post[:image_url].nil?
+
+        @posts << post
       end
     end
 
@@ -68,6 +77,14 @@ class PostRepository
       @current_post[:author]       = characters if @author_being_entered
       @current_post[:title]        = characters if @title_being_entered
       @current_post[:published_at] = characters if @published_at_being_entered
+
+      if @content_being_entered
+        url = characters[/img.+src="(.+?)"/m, 1]
+        unless url.nil?
+          @current_post[:image_url] = "http://blog.arkency.com#{url}"
+          @content_being_entered = false
+        end
+      end
     end
 
     attr_reader :completion_callback
