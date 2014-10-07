@@ -10,7 +10,7 @@ class BlogPostCell < UITableViewCell
   end
 
   def blog_post=(blog_post)
-    @image.url = 'http://blog.arkency.com/assets/images/react-keys-getinitial-state/react_children_keys-fit.jpg'
+    @image.url = blog_post.image_url
     @title.text = blog_post.title
   end
 end
