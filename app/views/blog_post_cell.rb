@@ -21,6 +21,8 @@ class BlogPostCellLayout < MotionKit::Layout
       autoresizing_mask :pin_to_top, :flexible_width
 
       frame [[0, 0], ['100%', 200]]
+      content_mode UIViewContentModeScaleAspectFill
+      clips_to_bounds true
 
       add UILabel, :title do
         autoresizing_mask :pin_to_bottom, :flexible_width
