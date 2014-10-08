@@ -93,7 +93,8 @@ class PostRepository
       if @content_being_entered
         url = characters[/img.+src="(.+?)"/m, 1]
         unless url.nil?
-          @current_post[:image_url] = "http://blog.arkency.com#{url}"
+          @current_post[:image_url] = url
+          @current_post[:image_url] = 'http://blog.arkency.com' + url if is_relative_url(@current_post[:image_url])
           @content_being_entered = false
         end
       end
@@ -101,6 +102,10 @@ class PostRepository
 
     def decode_html(string)
       string.gsub("&amp;", "&").gsub("&nbsp;", " ")
+    end
+
+    def is_relative_url(url)
+      not url.start_with?("http")
     end
 
     attr_reader :completion_callback
