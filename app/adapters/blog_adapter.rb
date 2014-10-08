@@ -1,10 +1,10 @@
 class BlogAdapter
-  def initialize(base_url = 'http://feeds.feedburner.com')
+  def initialize(base_url = 'http://blog.arkency.com/')
     @base_url = base_url
   end
 
   def fetch_blog_posts_feed(success_callback, failure_callback = nil)
-    http_client.get('arkency.xml') do |result|
+    http_client.get('atom.xml') do |result|
       success_callback.call(result.object) if result.success?
 
       if result.failure?
