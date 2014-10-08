@@ -20,6 +20,11 @@ Motion::Project::App.setup do |app|
   app.sdk_version = '8.0'
   app.identifier = 'com.arkency.app'
 
+  app.vendor_project('vendor/DistanceOfTimeInWords', :static, :cflags => '-fobjc-arc') 
+  app.pods do
+    pod 'AFNetworking'
+  end
+
   app.development do
     app.testflight do
       app.testflight.api_token  = ENV['TESTFLIGHT_API_TOKEN']
