@@ -8,6 +8,7 @@ resources/*.storyboardc
 vendor/
 .DS_Store
 nbproject
+.env
 .redcar
 #*#
 *~
