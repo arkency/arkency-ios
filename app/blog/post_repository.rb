@@ -66,7 +66,7 @@ class PostRepository
       @content_being_entered = false
 
       if elementName == 'entry'
-        post = Post.new(@current_post[:url], @current_post[:title], @current_post[:published_at])
+        post = Post.new(@current_post[:url], decode_html(@current_post[:title]), @current_post[:published_at])
         post.set_found_image(@current_post[:image_url]) unless @current_post[:image_url].nil?
 
         @posts << post
@@ -74,9 +74,21 @@ class PostRepository
     end
 
     def parser(parser, foundCharacters: characters)
-      @current_post[:author]       = characters if @author_being_entered
-      @current_post[:title]        = characters if @title_being_entered
-      @current_post[:published_at] = characters if @published_at_being_entered
+
+      if @author_being_entered
+        @current_post[:author] ||= ''
+        @current_post[:author] += characters
+      end
+
+      if @title_being_entered
+        @current_post[:title] ||= ''
+        @current_post[:title] += characters
+      end
+
+      if @published_at_being_entered
+        @current_post[:published_at] ||= ''
+        @current_post[:published_at] += characters if @published_at_being_entered
+      end
 
       if @content_being_entered
         url = characters[/img.+src="(.+?)"/m, 1]
@@ -85,6 +97,10 @@ class PostRepository
           @content_being_entered = false
         end
       end
+    end
+
+    def decode_html(string)
+      string.gsub("&amp;", "&").gsub("&nbsp;", " ")
     end
 
     attr_reader :completion_callback
