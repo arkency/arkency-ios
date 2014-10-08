@@ -2,12 +2,15 @@
 #
 $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project/template/ios'
+require 'dotenv'
 
 begin
   require 'bundler'
   Bundler.require
 rescue LoadError
 end
+
+Dotenv.load('.env')
 
 Motion::Project::App.setup do |app|
   app.name = 'Arkency'
@@ -16,4 +19,12 @@ Motion::Project::App.setup do |app|
   app.icons = [1024, 180, 120, 76, 72, 60, 40].map { |n| "Icon_#{n}" }
   app.sdk_version = '8.0'
   app.identifier = 'com.arkency.app'
+
+  app.development do
+    app.testflight do
+      app.testflight.api_token  = ENV['TESTFLIGHT_API_TOKEN']
+      app.testflight.team_token = ENV['TESTFLIGHT_TEAM_TOKEN']
+      app.testflight.app_token  = ENV['TESTFLIGHT_APP_TOKEN']
+    end
+  end
 end

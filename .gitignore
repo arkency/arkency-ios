@@ -6,6 +6,7 @@ resources/*.nib
 resources/*.momd
 resources/*.storyboardc
 vendor/
+app/testflight_launcher.rb
 .DS_Store
 nbproject
 .env
