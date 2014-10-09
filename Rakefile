@@ -28,7 +28,7 @@ Motion::Project::App.setup do |app|
   app.development do
     app.entitlements['get-task-allow'] = true
     app.provisioning_profile = ENV['APPLE_PROVISIONING_PROFILE_PATH']
-    app.codesign_certificate = "iOS Developer: #{ENV['APPLE_DEVELOPER_MAME']}"
+    app.codesign_certificate = "iPhone Developer: #{ENV['APPLE_DEVELOPER_NAME']}"
 
     app.testflight do
       app.testflight.api_token        = ENV['TESTFLIGHT_API_TOKEN']
