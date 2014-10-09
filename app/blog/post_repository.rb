@@ -94,7 +94,7 @@ class PostRepository
         url = characters[/img.+src="(.+?)"/m, 1]
         unless url.nil?
           @current_post[:image_url] = url
-          @current_post[:image_url] = 'http://blog.arkency.com' + url if is_relative_url(@current_post[:image_url])
+          @current_post[:image_url] = 'http://blog.arkency.com' + prepare_relative_image_url(url) if is_relative_url(@current_post[:image_url])
           @content_being_entered = false
         end
       end
@@ -106,6 +106,12 @@ class PostRepository
 
     def is_relative_url(url)
       not url.start_with?("http")
+    end
+
+    def prepare_relative_image_url(url)
+      url.gsub(/(-fit)?\.(jpg|png)\z/) do |match|
+        "-ios.#{$2}"
+      end
     end
 
     attr_reader :completion_callback
