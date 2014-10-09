@@ -26,10 +26,21 @@ Motion::Project::App.setup do |app|
   end
 
   app.development do
+    app.entitlements['get-task-allow'] = true
+    app.provisioning_profile = ENV['APPLE_PROVISIONING_PROFILE_PATH']
+    app.codesign_certificate = "iOS Developer: #{ENV['APPLE_DEVELOPER_MAME']}"
+
     app.testflight do
-      app.testflight.api_token  = ENV['TESTFLIGHT_API_TOKEN']
-      app.testflight.team_token = ENV['TESTFLIGHT_TEAM_TOKEN']
-      app.testflight.app_token  = ENV['TESTFLIGHT_APP_TOKEN']
+      app.testflight.api_token        = ENV['TESTFLIGHT_API_TOKEN']
+      app.testflight.team_token       = ENV['TESTFLIGHT_TEAM_TOKEN']
+      app.testflight.app_token        = ENV['TESTFLIGHT_APP_TOKEN']
+      app.testflight.notify           = true
+      app.testflight.identify_testers = true
     end
+  end
+
+  app.release do
+    app.provisioning_profile = ENV['APPLE_PROVISIONING_PROFILE_PATH']
+    app.codesign_certificate = "iPhone Distribution: #{ENV['APPLE_COMPANY_NAME']}"
   end
 end
