@@ -21,12 +21,29 @@ Motion::Project::App.setup do |app|
   app.identifier = 'com.arkency.app'
 
   app.vendor_project('vendor/DistanceOfTimeInWords', :static, :cflags => '-fobjc-arc')
+  app.vendor_project('vendor/Parse.framework', :static, products: ['Parse'], headers_dir: 'Headers')
+  app.vendor_project('vendor/Bolts.framework', :static, products: ['Bolts'], headers_dir: 'Headers')
+
+  app.frameworks += [
+    'Social',
+    'FacebookSDK',
+    'StoreKit',
+    'AudioToolbox',
+    'CFNetwork',
+    'SystemConfiguration',
+    'MobileCoreServices',
+    'Security',
+    'QuartzCore'
+  ]
+
   app.entitlements['aps-environment'] = ENV['APNS_ENVIRONMENT']
 
   app.pods do
     pod 'AFNetworking'
-    pod 'UrbanAirship-iOS-SDK'
   end
+
+  app.info_plist['PARSE_CLIENT_KEY'] = ENV['PARSE_CLIENT_KEY']
+  app.info_plist['PARSE_APP_ID']     = ENV['PARSE_APP_ID']
 
   app.development do
     app.entitlements['get-task-allow'] = true
