@@ -24,6 +24,7 @@ Motion::Project::App.setup do |app|
 
   app.pods do
     pod 'AFNetworking'
+    pod 'UrbanAirship-iOS-SDK'
   end
 
   app.development do
