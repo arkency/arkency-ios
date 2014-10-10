@@ -1,11 +1,7 @@
-You need to provide AirshipConfig.plist with following contents:
+# Arkency iOS application
 
-```
-{
-  "APP_STORE_OR_AD_HOC_BUILD" = NO;
-  "DEVELOPMENT_APP_KEY" = "Your Development App Key";
-  "DEVELOPMENT_APP_SECRET" = "Your Development App Secret";
-  "PRODUCTION_APP_KEY" = "Your Production App Key";
-  "PRODUCTION_APP_SECRET" = "Your Production App Secret";
-}
-```
+Simple application which shows what can be achieved in RubyMotion in 7 days, without having much knowledge about iOS at all.
+
+## Building:
+
+To build this app, you need to provide environmental variables which are listed in `.env.example` file. You can provide it in `rake` command each time, or use [dotenv](https://github.com/bkeepers/dotenv) for this. This project fetched dotenv variables from `.env` file that you should create by yourself.
