@@ -21,6 +21,7 @@ Motion::Project::App.setup do |app|
   app.identifier = 'com.arkency.app'
 
   app.vendor_project('vendor/DistanceOfTimeInWords', :static, :cflags => '-fobjc-arc')
+  app.entitlements['aps-environment'] = ENV['APNS_ENVIRONMENT']
 
   app.pods do
     pod 'AFNetworking'
