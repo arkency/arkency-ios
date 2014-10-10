@@ -21,7 +21,6 @@ Motion::Project::App.setup do |app|
   app.identifier = 'com.arkency.app'
 
   app.vendor_project('vendor/DistanceOfTimeInWords', :static, :cflags => '-fobjc-arc')
-  app.vendor_project('vendor/UrbanAirship', :static, :products => ['libUAirship-1.2.2.a'], :headers_dir => 'Common')
 
   app.pods do
     pod 'AFNetworking'
@@ -33,11 +32,12 @@ Motion::Project::App.setup do |app|
     app.codesign_certificate = "iPhone Developer: #{ENV['APPLE_DEVELOPER_NAME']}"
 
     app.testflight do
-      app.testflight.api_token        = ENV['TESTFLIGHT_API_TOKEN']
-      app.testflight.team_token       = ENV['TESTFLIGHT_TEAM_TOKEN']
-      app.testflight.app_token        = ENV['TESTFLIGHT_APP_TOKEN']
-      app.testflight.notify           = true
-      app.testflight.identify_testers = true
+      app.testflight.api_token          = ENV['TESTFLIGHT_API_TOKEN']
+      app.testflight.team_token         = ENV['TESTFLIGHT_TEAM_TOKEN']
+      app.testflight.app_token          = ENV['TESTFLIGHT_APP_TOKEN']
+      app.testflight.distribution_lists = ['Arkency']
+      app.testflight.notify             = true
+      app.testflight.identify_testers   = true
     end
   end
 
