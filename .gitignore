@@ -5,8 +5,10 @@ app/pixate_code.rb
 resources/*.nib
 resources/*.momd
 resources/*.storyboardc
-vendor/
+vendor/Pods
+vendor/Podfile.lock
 app/testflight_launcher.rb
+resources/AirshipConfig.plist
 .DS_Store
 nbproject
 .env

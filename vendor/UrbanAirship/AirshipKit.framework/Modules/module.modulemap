@@ -1,0 +1,6 @@
+framework module AirshipKit {
+  umbrella header "AirshipKit.h"
+
+  export *
+  module * { export * }
+}

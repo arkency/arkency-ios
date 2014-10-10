@@ -20,7 +20,9 @@ Motion::Project::App.setup do |app|
   app.sdk_version = '8.0'
   app.identifier = 'com.arkency.app'
 
-  app.vendor_project('vendor/DistanceOfTimeInWords', :static, :cflags => '-fobjc-arc') 
+  app.vendor_project('vendor/DistanceOfTimeInWords', :static, :cflags => '-fobjc-arc')
+  app.vendor_project('vendor/UrbanAirship', :static, :products => ['libUAirship-1.2.2.a'], :headers_dir => 'Common')
+
   app.pods do
     pod 'AFNetworking'
   end
