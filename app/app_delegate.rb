@@ -17,8 +17,10 @@ class AppDelegate
 
   def integrateParsePushNotifications(application)
     if application.respond_to?(:isRegisteredForRemoteNotifications)
-      application.registerUserNotificationSettings(settingsForTypes: UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge,
-                                                   categories: nil)
+      settings = UIUserNotificationSettings.settingsForTypes(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge,
+                                                             categories: nil)
+      application.registerUserNotificationSettings(settings)
+      application.registerForRemoteNotifications
     else
       application.registerForRemoteNotificationTypes(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
     end
@@ -32,10 +34,6 @@ class AppDelegate
 
   def application(application, didReceiveRemoteNotification: userInfo)
     PFPush.handlePush(userInfo)
-  end
-
-  def application(application, didRegisterUserNotificationSettings: notificationSettings)
-    application.registerForRemoteNotifications
   end
 
   def application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)

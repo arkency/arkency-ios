@@ -17,7 +17,7 @@ Motion::Project::App.setup do |app|
   app.version = '1.0'
   app.deployment_target = '7.0'
   app.icons = [1024, 120, 'Small'].map { |n| "Icon-#{n}" } + ['Icon']
-  app.sdk_version = '8.0'
+  app.sdk_version = '8.1'
   app.identifier = 'com.arkency.app'
 
   app.vendor_project('vendor/DistanceOfTimeInWords', :static, :cflags => '-fobjc-arc')
