@@ -1,29 +1,49 @@
 class AppDelegate
+  include Application
+
   def application(application, didFinishLaunchingWithOptions:launchOptions)
+    clearNotificationBadges
     integrateWithParse
-    integrateParsePushNotifications(application)
+    integrateParsePushNotifications
     loadBlogPostsList
     true
   end
 
-  def clearNotificationBadges
-    UIApplication.sharedApplication.setApplicationIconBadgeNumber(0)
-  end
-
+  private
   def integrateWithParse
     Parse.setApplicationId(env['PARSE_APP_ID'],
                            clientKey: env['PARSE_CLIENT_KEY'])
   end
 
-  def integrateParsePushNotifications(application)
-    if application.respond_to?(:isRegisteredForRemoteNotifications)
-      settings = UIUserNotificationSettings.settingsForTypes(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge,
-                                                             categories: nil)
-      application.registerUserNotificationSettings(settings)
-      application.registerForRemoteNotifications
+  def env
+    NSBundle.mainBundle.infoDictionary
+  end
+
+  def integrateParsePushNotifications
+    if app.respond_to?(:registerUserNotificationSettings)
+      app.registerUserNotificationSettings UIUserNotificationSettings.settingsForTypes(notificationTypes, categories: nil)
     else
-      application.registerForRemoteNotificationTypes(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
+      app.registerForRemoteNotificationTypes notificationTypes
     end
+  end
+
+  def notificationTypes
+    UIUserNotificationTypeSound |
+    UIUserNotificationTypeAlert |
+    UIUserNotificationTypeBadge
+  end
+
+  def application(application, didReceiveRemoteNotification: userInfo)
+    clearNotificationBadges
+    PFPush.handlePush(userInfo)
+  end
+
+  def application(application, didFailToRegisterForRemoteNotificationsWithError: error)
+    NSLog("Error while registering for Push Notifications: %@", error.localizedDescription)
+  end
+
+  def application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    registerDeviceInParse(deviceToken)
   end
 
   def registerDeviceInParse(deviceToken)
@@ -32,29 +52,19 @@ class AppDelegate
     installation.saveInBackground
   end
 
-  def application(application, didReceiveRemoteNotification: userInfo)
-    PFPush.handlePush(userInfo)
-  end
-
-  def application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
-    clearNotificationBadges
-    registerDeviceInParse(deviceToken)
-  end
-
-  def application(application, didFailToRegisterForRemoteNotificationsWithError: error)
-    NSLog("Error while registering for Push Notifications: %@", error.localizedDescription)
-  end
-
   def loadBlogPostsList
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     @window.rootViewController = UINavigationController.alloc.initWithRootViewController(blog_posts_view_controller)
     @window.makeKeyAndVisible
   end
 
-  include Application
+  def app
+    UIApplication.sharedApplication
+  end
 
-  private
-  def env
-    NSBundle.mainBundle.infoDictionary
+  def clearNotificationBadges
+    app.setApplicationIconBadgeNumber 1
+    app.setApplicationIconBadgeNumber 0
+    app.cancelAllLocalNotifications
   end
 end
