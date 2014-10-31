@@ -8,6 +8,23 @@ class AppDelegate
     loadBlogPostsList
     true
   end
+  
+  def applicationDidBecomeActive(application)
+    clearNotificationBadges
+  end
+
+  def application(application, didReceiveRemoteNotification: userInfo)
+    clearNotificationBadges
+    PFPush.handlePush(userInfo)
+  end
+
+  def application(application, didFailToRegisterForRemoteNotificationsWithError: error)
+    NSLog("Error while registering for Push Notifications: %@", error.localizedDescription)
+  end
+
+  def application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    registerDeviceInParse(deviceToken)
+  end
 
   private
   def integrateWithParse
@@ -32,19 +49,6 @@ class AppDelegate
     UIUserNotificationTypeSound |
     UIUserNotificationTypeAlert |
     UIUserNotificationTypeBadge
-  end
-
-  def application(application, didReceiveRemoteNotification: userInfo)
-    clearNotificationBadges
-    PFPush.handlePush(userInfo)
-  end
-
-  def application(application, didFailToRegisterForRemoteNotificationsWithError: error)
-    NSLog("Error while registering for Push Notifications: %@", error.localizedDescription)
-  end
-
-  def application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
-    registerDeviceInParse(deviceToken)
   end
 
   def registerDeviceInParse(deviceToken)
