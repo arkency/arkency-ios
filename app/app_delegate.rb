@@ -22,6 +22,7 @@ class AppDelegate
   def integrateParsePushNotifications
     if app.respond_to?(:registerUserNotificationSettings)
       app.registerUserNotificationSettings UIUserNotificationSettings.settingsForTypes(notificationTypes, categories: nil)
+      app.registerForRemoteNotifications
     else
       app.registerForRemoteNotificationTypes notificationTypes
     end
@@ -47,9 +48,10 @@ class AppDelegate
   end
 
   def registerDeviceInParse(deviceToken)
-    installation = PFInstallation.currentInstallation
-    installation.setDeviceTokenFromData(deviceToken)
-    installation.saveInBackground
+    PFInstallation.currentInstallation.tap do |installation|
+      installation.setDeviceTokenFromData(deviceToken)
+      installation.saveInBackground
+    end
   end
 
   def loadBlogPostsList
